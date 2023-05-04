@@ -80,6 +80,8 @@ flutter:
     - assets/buah_naga.jpg
     - assets/buah_pisang.jpg
     - assets/buah_stroberry.jpg
+    - assets/buah_semangka.jpg
+    - assets/buah_nangka.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
