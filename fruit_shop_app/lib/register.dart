@@ -138,7 +138,7 @@ class _registerState extends State<register> {
                         MaterialPageRoute(builder: (context) => login()),
                       );
                       final snackBar = SnackBar(
-                        content: Text('Login Anda Berhasil !'),
+                        content: Text('Registrasi Anda Berhasil !'),
                         action: SnackBarAction(
                           label: 'OKE',
                           onPressed: () {},
