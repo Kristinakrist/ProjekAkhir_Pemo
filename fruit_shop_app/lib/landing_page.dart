@@ -45,7 +45,7 @@ class _landing_pageState extends State<landing_page> {
                     child: Image(
                       width: 200,
                       height: 200,
-                      image: AssetImage('logo.png'),
+                      image: AssetImage('assets/logo.png'),
                     ),
                   ),
                 ],
