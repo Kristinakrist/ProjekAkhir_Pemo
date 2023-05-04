@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:fruit_shop_app/checkout.dart';
-import 'package:fruit_shop_app/favorit.dart';
+import 'package:fruit_shop_app/homepage.dart';
 import 'package:fruit_shop_app/login.dart';
-import 'package:fruit_shop_app/profil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_card/image_card.dart';
 
@@ -16,16 +14,14 @@ var produk = Color.fromARGB(255, 255, 255, 255);
 var bgCard = Color.fromARGB(255, 110, 109, 109);
 var badgenya = Color.fromARGB(255, 250, 182, 24);
 
-class homepage extends StatefulWidget {
-  const homepage({super.key});
+class favorit extends StatefulWidget {
+  const favorit({super.key});
 
   @override
-  State<homepage> createState() => _homepageState();
+  State<favorit> createState() => _favoritState();
 }
 
-class _homepageState extends State<homepage> {
-  final ScrollController _homeController = ScrollController();
-  int _selectedIndex = 0;
+class _favoritState extends State<favorit> {
   String dropdownValue = list.first;
   List<String> countries = [
     "Buah Lokal",
@@ -39,7 +35,7 @@ class _homepageState extends State<homepage> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'Home',
+          'Favorit',
         ),
         backgroundColor: navbar,
       ),
@@ -72,10 +68,7 @@ class _homepageState extends State<homepage> {
               ),
               title: const Text('User Profil'),
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => profil()),
-                );
+                Navigator.pop(context);
               },
             ),
             ListTile(
@@ -140,85 +133,10 @@ class _homepageState extends State<homepage> {
             label: 'Populer',
           ),
         ],
-        currentIndex: _selectedIndex,
-        onTap: (int index) {
-          switch (index) {
-            case 0:
-              // only scroll to top when current index is selected.
-              if (_selectedIndex == index) {
-                setState(() {});
-              } else {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const homepage()),
-                );
-              }
-              break;
-            case 1:
-              if (_selectedIndex == index) {
-                setState(() {});
-              } else {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const checkout()),
-                );
-              }
-              break;
-            case 2:
-              if (_selectedIndex == index) {
-                setState(() {});
-              } else {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const favorit()),
-                );
-              }
-              break;
-          }
-          setState(
-            () {
-              _selectedIndex = index;
-            },
-          );
-        },
       ),
       body: Center(
         child: Column(
           children: [
-            SizedBox(
-              height: 40,
-              child: Text(
-                "Welcome, to Fruit Shop",
-                style: GoogleFonts.pacifico(
-                  color: Colors.black,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.only(left: 15, top: 0, right: 15, bottom: 0),
-              child: CupertinoSearchTextField(
-                onChanged: (value) {},
-                onSubmitted: (value) {},
-                autocorrect: true,
-              ),
-            ),
-            Padding(
-                padding: const EdgeInsets.only(
-                    left: 15, top: 15, right: 15, bottom: 5),
-                child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: countries.map((country) {
-                        return Container(
-                            // color: Colors.orangeAccent,
-                            // height: 100,
-                            width: 100,
-                            alignment: Alignment.center,
-                            child: Text(country));
-                      }).toList(),
-                    ))),
             Expanded(
               child: GridView.count(
                 physics: ScrollPhysics(),
@@ -232,15 +150,15 @@ class _homepageState extends State<homepage> {
                   FillImageCard(
                     color: bgCard,
                     width: 300,
-                    heightImage: 100,
-                    imageProvider: AssetImage('assets/buah_leci.jpg'),
-                    tags: [_tag('Category', () {}), _tag('Product', () {})],
+                    heightImage: 80,
+                    imageProvider: AssetImage('assets/buah_durian.jpg'),
+                    tags: [_tag('Hot Fruits', () {})],
                     title: Text(
-                      "Leci",
+                      "Durian",
                       style: GoogleFonts.pacifico(color: produk, fontSize: 20),
                     ),
                     description: Text(
-                      "Rp. 15.000",
+                      "Rp. 60.000",
                       style: TextStyle(
                         color: produk,
                       ),
@@ -249,9 +167,28 @@ class _homepageState extends State<homepage> {
                   FillImageCard(
                     color: bgCard,
                     width: 300,
-                    heightImage: 100,
+                    heightImage: 80,
+                    imageProvider: AssetImage('assets/buah_leci.jpg'),
+                    tags: [_tag('Hot Fruits', () {})],
+                    title: Text(
+                      "Leci",
+                      style: GoogleFonts.pacifico(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          fontSize: 20),
+                    ),
+                    description: Text(
+                      "Rp. 15.000",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
+                    ),
+                  ),
+                  FillImageCard(
+                    color: bgCard,
+                    width: 300,
+                    heightImage: 80,
                     imageProvider: AssetImage('assets/buah_jeruk.jpg'),
-                    tags: [_tag('Category', () {}), _tag('Product', () {})],
+                    tags: [_tag('Hot Fruits', () {})],
                     title: Text(
                       "Jeruk",
                       style: GoogleFonts.pacifico(
@@ -268,9 +205,9 @@ class _homepageState extends State<homepage> {
                   FillImageCard(
                     color: bgCard,
                     width: 300,
-                    heightImage: 100,
+                    heightImage: 80,
                     imageProvider: AssetImage('assets/buah_kiwi.jpg'),
-                    tags: [_tag('Category', () {}), _tag('Product', () {})],
+                    tags: [_tag('Hot Fruits', () {})],
                     title: Text(
                       "Kiwi",
                       style: GoogleFonts.pacifico(
@@ -287,28 +224,9 @@ class _homepageState extends State<homepage> {
                   FillImageCard(
                     color: bgCard,
                     width: 300,
-                    heightImage: 100,
-                    imageProvider: AssetImage('assets/buah_durian.jpg'),
-                    tags: [_tag('Category', () {}), _tag('Product', () {})],
-                    title: Text(
-                      "Durian",
-                      style: GoogleFonts.pacifico(
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 20),
-                    ),
-                    description: Text(
-                      "Rp. 60.000",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ),
-                  ),
-                  FillImageCard(
-                    color: bgCard,
-                    width: 300,
-                    heightImage: 100,
+                    heightImage: 80,
                     imageProvider: AssetImage('assets/bua_rambutan.jpg'),
-                    tags: [_tag('Category', () {}), _tag('Product', () {})],
+                    tags: [_tag('Hot Fruits', () {})],
                     title: Text(
                       "Rambutan",
                       style: GoogleFonts.pacifico(
@@ -325,9 +243,9 @@ class _homepageState extends State<homepage> {
                   FillImageCard(
                     color: bgCard,
                     width: 300,
-                    heightImage: 100,
+                    heightImage: 80,
                     imageProvider: AssetImage('assets/buah_mangga.webp'),
-                    tags: [_tag('Category', () {}), _tag('Product', () {})],
+                    tags: [_tag('Hot Fruits', () {})],
                     title: Text(
                       "Mangga",
                       style: GoogleFonts.pacifico(
@@ -344,9 +262,9 @@ class _homepageState extends State<homepage> {
                   FillImageCard(
                     color: bgCard,
                     width: 300,
-                    heightImage: 100,
+                    heightImage: 80,
                     imageProvider: AssetImage('assets/buah_stroberry.jpg'),
-                    tags: [_tag('Category', () {}), _tag('Product', () {})],
+                    tags: [_tag('Hot Fruits', () {})],
                     title: Text(
                       "Stroberry",
                       style: GoogleFonts.pacifico(
@@ -363,9 +281,9 @@ class _homepageState extends State<homepage> {
                   FillImageCard(
                     color: bgCard,
                     width: 300,
-                    heightImage: 100,
+                    heightImage: 80,
                     imageProvider: AssetImage('assets/buah_naga.jpg'),
-                    tags: [_tag('Category', () {}), _tag('Product', () {})],
+                    tags: [_tag('Hot Fruits', () {})],
                     title: Text(
                       "Naga",
                       style: GoogleFonts.pacifico(
@@ -382,9 +300,9 @@ class _homepageState extends State<homepage> {
                   FillImageCard(
                     color: bgCard,
                     width: 300,
-                    heightImage: 100,
+                    heightImage: 80,
                     imageProvider: AssetImage('assets/buah_apel.jpg'),
-                    tags: [_tag('Category', () {}), _tag('Product', () {})],
+                    tags: [_tag('Hot Products!', () {})],
                     title: Text(
                       "Apel",
                       style: GoogleFonts.pacifico(
@@ -401,9 +319,9 @@ class _homepageState extends State<homepage> {
                   FillImageCard(
                     color: bgCard,
                     width: 300,
-                    heightImage: 100,
+                    heightImage: 80,
                     imageProvider: AssetImage('assets/buah_anggur.webp'),
-                    tags: [_tag('Category', () {}), _tag('Product', () {})],
+                    tags: [_tag('Hot Fruits', () {})],
                     title: Text(
                       "Anggur",
                       style: GoogleFonts.pacifico(
@@ -431,7 +349,7 @@ class _homepageState extends State<homepage> {
       onTap: onPressed,
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6), color: badgenya),
+            borderRadius: BorderRadius.circular(6), color: Colors.red),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
         child: Text(
           tag,
